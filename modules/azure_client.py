@@ -66,7 +66,6 @@ class AzureOpenAIClient:
     # chatgpt api 래퍼
     def get_completion(
        self,
-       model : str,
        messages : List[Dict[str, str]],
        temperature : float = 0.7,
        max_tokens : int = 2000,
@@ -90,10 +89,10 @@ class AzureOpenAIClient:
                 model = self.deployment_name,
                 messages = messages,
                 temperature =  temperature,
-                max_toekens = max_tokens,
+                max_tokens = max_tokens,
                 top_p = top_p
             )
-            return response.choices[0].messsage.content
+            return response.choices[0].message.content
         except Exception as e :
             logger.error(f"API 호출 오류 : {str(e)}")
             return f"오류가 발생했습니다. {str(e)}"
@@ -176,19 +175,18 @@ class AzureOpenAIClient:
         return self.get_completion(messages, temperature=0.3)
     
 
-    def test_connection() :
-        """연결 테스트"""
-        try :
-            client = AzureOpenAIClient()
-            response = client.get_completion([
-                {"role" : "user", "content" : "Hello, Azure OpenAI!"}
-            ])
-            print(f"✅ 연결 성공!\n응답: {response}")
-            return True
-
-        except Exception as e :
-            print(f"❌ 연결 실패: {e}")
-            return False
+def test_connection():
+    """연결 테스트"""
+    try:
+        client = AzureOpenAIClient()
+        response = client.get_completion([
+            {"role": "user", "content": "Hello, Azure OpenAI!"}
+        ])
+        print(f"✅ 연결 성공!\n응답: {response}")
+        return True
+    except Exception as e:
+        print(f"❌ 연결 실패: {e}")
+        return False
 
 if __name__ == "__main__":
     # azure_client 모듈 직접 실행 시 테스트
