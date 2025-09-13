@@ -38,8 +38,7 @@ class AzureOpenAIClient:
         # Azure OpenAI 클라이언트 생성
         self.client = AzureOpenAI(
             api_key=self.api_key,
-            api_base=self.endpoint,
-            api_type=self.api_type,
+            azure_endpoint=self.endpoint,
             api_version=self.api_version
         )
         logger.info("Azure OpenAI 클라이언트 초기화 완료")
