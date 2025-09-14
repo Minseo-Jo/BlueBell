@@ -263,7 +263,7 @@ elif feature == "🔍 코드 리뷰":
         code_content = st.text_area(
             "코드를 입력하세요",
             height=400,
-            placeholder="리뷰받을 코드를 여기에 붙여넣으세요..."
+            placeholder="리뷰 받을 코드를 여기에 붙여넣으세요..."
         )
     
     elif input_method == "파일 업로드":
@@ -362,7 +362,7 @@ elif feature == "ℹ️ 정보":
     st.markdown("## ℹ️ DevPilot 정보")
     
     st.markdown("""
-    ### 🚁 DevPilot이란?
+    ### 🚁 DevPilot
     
     DevPilot은 개발팀의 생산성을 높이기 위해 설계된 AI 기반 개발 지원 도구입니다.
     
@@ -387,7 +387,7 @@ elif feature == "ℹ️ 정보":
     
     ### 기술 스택
     
-    - **AI Engine**: Azure OpenAI Service (GPT-4)
+    - **AI Engine**: Azure OpenAI Service (GPT-4.1-mini)
     - **Frontend**: Streamlit
     - **Backend**: Python
     - **Deployment**: Azure Web App
@@ -408,7 +408,7 @@ st.markdown("---")
 st.markdown(
     """
     <div style='text-align: center; color: #888;'>
-        <p>🚁 DevPilot v1.0.0 | Powered by Azure OpenAI | © 2024 KTds</p>
+        <p>🚁 DevPilot v1.0.0 | Powered by Azure OpenAI | © 2025 KTds</p>
     </div>
     """,
     unsafe_allow_html=True
