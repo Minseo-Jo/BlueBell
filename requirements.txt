@@ -3,9 +3,3 @@ openai==1.6.1
 python-dotenv==1.0.0
 pandas==2.1.4
 numpy==1.24.3
-# 추가 필요한 패키지들
-logging
-re
-typing
-pathlib
-os
