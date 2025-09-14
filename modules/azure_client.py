@@ -67,7 +67,7 @@ class AzureOpenAIClient:
        self,
        messages : List[Dict[str, str]],
        temperature : float = 0.7,
-       max_tokens : int = 2000,
+       max_tokens : int = 4000,
        top_p: float = 0.95     
     ) -> str :
         """
@@ -162,7 +162,7 @@ class AzureOpenAIClient:
         다음 {language} 코드를 검토해주세요 :
 
         '''{language}
-        {code[:2000]} #토큰 제한
+        {code[:3000]} #토큰 제한
         '''
         """
 
@@ -171,7 +171,7 @@ class AzureOpenAIClient:
             {"role" : "user", "content" : user_prompt}
         ]
 
-        return self.get_completion(messages, temperature=0.3)
+        return self.get_completion(messages, temperature=0.3, max_tokens=4000)
     
 
 def test_connection():
