@@ -395,14 +395,12 @@ elif feature == "ℹ️ 정보":
     ### 문의 및 피드백
     
     개선 사항이나 버그 리포트는 아래로 연락주세요:
-    - 📧 Email: devpilot@ktds.com
-    - 💬 Slack: #devpilot-support
-    
+    - 📧 Email: minseo.jo@kt.com
     ---
     
     **Version**: 1.0.0 (MVP)  
-    **Last Updated**: 2024.01  
-    **Developed by**: KTds AI Team
+    **Last Updated**: 2025.09.14
+    **Developed by**: KTds AI플랫폼개발팀 조민서 전임
     """)
 
 # 푸터
