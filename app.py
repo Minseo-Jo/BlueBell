@@ -140,43 +140,24 @@ def main():
 
     # 사이드바
     with st.sidebar:
-        st.markdown("### 🎯 기능 선택")
+        st.markdown("### 기능 선택")
         feature = st.radio(
             "원하는 기능을 선택하세요",
-            ["🏠 홈", "📋 환경 설정 가이드", "🔍 코드 리뷰", "ℹ️ 정보"],
+            ["🏠 홈", "⚙️ 개발 환경 설정", "🔍 코드 리뷰", "ℹ️ 정보"],
             index=0
         )
         
-        st.markdown("---")
-        st.markdown("### 📊 사용 통계")
-        col1, col2 = st.columns(2)
-        with col1:
-            st.metric("분석한 프로젝트", "12")
-        with col2:
-            st.metric("리뷰한 코드", "47")
-        
-        st.markdown("---")
-        st.markdown("### ⚙️ 설정")
-        os_type = st.selectbox(
-            "타겟 OS",
-            ["전체", "Windows", "macOS", "Linux"]
-        )
-        code_language = st.selectbox(
-            "주 사용 언어",
-            ["자동 감지", "Python", "JavaScript", "Java", "C#", "Go"]
-        )
 
     # 메인 컨텐츠
     if feature == "🏠 홈":
-        st.markdown("## 🎯 DevPilot으로 개발 생산성을 높이세요!")
         
         col1, col2 = st.columns(2)
         
         with col1:
             st.markdown("""
             <div class="feature-card">
-            <h3>📋 환경 설정 가이드</h3>
-            <p>README 파일이나 프로젝트 URL을 분석하여 OS별 맞춤 환경 설정 가이드를 자동 생성합니다.</p>
+            <h5>⚙️ 개발 환경 설정</h5>
+            <p>README 파일을 분석하여 맞춤 개발 환경 설정 가이드를 생성합니다.</p>
             <ul>
                 <li>필수 소프트웨어 설치 명령어</li>
                 <li>의존성 패키지 설치</li>
@@ -189,8 +170,8 @@ def main():
         with col2:
             st.markdown("""
             <div class="feature-card">
-            <h3>🔍 코드 리뷰</h3>
-            <p>코드를 분석하여 사내/고객사 코딩 규칙에 맞는 개선 사항을 제안합니다.</p>
+            <h5>🔍 코드 리뷰</h5>
+            <p>코드를 분석하여 사내/고객사에 맞춤화된 코드 개선 사항을 제안합니다.</p>
             <ul>
                 <li>네이밍 컨벤션 검사</li>
                 <li>코드 구조 분석</li>
@@ -203,25 +184,25 @@ def main():
         st.markdown("---")
         
         # 빠른 시작
-        st.markdown("### 🚀 빠른 시작")
+        st.markdown("#### 🚀 빠른 시작")
         quick_action = st.selectbox(
             "무엇을 도와드릴까요?",
-            ["선택하세요", "새 프로젝트 환경 설정", "코드 리뷰 받기", "README 분석하기"]
+            ["선택하세요", "개발 환경 설정", "코드 리뷰"]
         )
         
-        if quick_action == "새 프로젝트 환경 설정":
-            st.info("📋 환경 설정 가이드 탭으로 이동하여 README 파일을 업로드해주세요.")
-        elif quick_action == "코드 리뷰 받기":
-            st.info("🔍 코드 리뷰 탭으로 이동하여 코드를 입력하거나 파일을 업로드해주세요.")
+        if quick_action == "개발 환경 설정":
+            st.info("⚙️ 개발 환경 설정 탭으로 이동하여 README 파일을 업로드해주세요.")
+        elif quick_action == "코드 리뷰":
+            st.info("🔍 코드 리뷰 탭으로 이동하여 코드 및 파일을 업로드해주세요.")
 
-    elif feature == "📋 환경 설정 가이드":
-        st.markdown("## 📋 환경 설정 가이드 생성")
+    elif feature == "⚙️ 개발 환경 설정":
+        st.markdown("### ⚙️ 개발 환경 설정")
         st.markdown("프로젝트의 README 파일을 분석하여 OS별 환경 설정 가이드를 생성합니다.")
         
         # 입력 방법 선택
         input_method = st.radio(
             "입력 방법 선택",
-            ["파일 업로드", "텍스트 직접 입력", "GitHub URL (미구현)"]
+            ["파일 업로드", "텍스트 직접 입력"]
         )
         
         readme_content = None
@@ -253,7 +234,7 @@ def main():
         )
         
         # 가이드 생성 버튼
-        if st.button("🚀 환경 설정 가이드 생성", type="primary"):
+        if st.button("🚀 가이드 생성", type="primary"):
             if readme_content:
                 with st.spinner("AI가 README를 분석하고 있습니다... (약 10-15초)"):
                     try:
@@ -291,7 +272,7 @@ def main():
                 st.warning("⚠️ README 내용을 입력해주세요.")
 
     elif feature == "🔍 코드 리뷰":
-        st.markdown("## 🔍 코드 리뷰")
+        st.markdown("### 🔍 코드 리뷰")
         st.markdown("코드를 분석하여 개선 사항을 제안합니다.")
         
         # 입력 방법 선택
@@ -342,7 +323,7 @@ def main():
                     st.code(code_content[:1000] + "..." if len(code_content) > 1000 else code_content, language=language.lower())
         
         # 리뷰 옵션
-        st.markdown("### ⚙️ 리뷰 옵션")
+        st.markdown("#### 📝 리뷰 옵션")
         col1, col2 = st.columns(2)
         
         with col1:
@@ -391,7 +372,7 @@ def main():
                         st.success("✅ 코드 리뷰가 완료되었습니다!")
                         
                         # 결과 표시
-                        st.markdown("### 📝 리뷰 결과")
+                        st.markdown("#### 📝 리뷰 결과")
                         st.markdown(review_result)
                         
                         # 다운로드 버튼
@@ -408,47 +389,47 @@ def main():
                 st.warning("⚠️ 코드를 입력해주세요.")
 
     elif feature == "ℹ️ 정보":
-        st.markdown("## ℹ️ DevPilot 정보")
         
         st.markdown("""
         ### 🚁 DevPilot
         
         DevPilot은 개발팀의 생산성을 높이기 위해 설계된 AI 기반 개발 지원 도구입니다.
         
-        ### 주요 기능
+        #### 주요 기능
         
-        1. **📋 환경 설정 가이드 자동 생성**
+        1. **⚙️ 개발 환경 설정 가이드 생성**
         - README 파일 분석을 통한 프로젝트 이해
         - OS별 맞춤 설치 가이드 제공
         - 의존성 패키지 및 환경변수 설정 안내
         
-        2. **🔍 코드 스타일 리뷰 및 개선**
+        2. **🔍 코드 리뷰 및 개선**
         - 네이밍 컨벤션 검사
         - 코드 구조 및 가독성 분석
         - 잠재적 버그 및 보안 취약점 탐지
         - 성능 개선 제안
         
-        ### 타겟 사용자
+        #### 타겟 사용자
         
         - **신규 프로젝트 투입 개발자**: 빠른 환경 적응이 필요한 개발자
         - **SI/외주 개발자**: 다양한 클라이언트 프로젝트를 다루는 개발자
         - **신입 개발자**: 프로젝트 파악과 코딩 스타일 학습이 필요한 개발자
         
-        ### 기술 스택
-        
-        - **AI Engine**: Azure OpenAI Service (GPT-4.1-mini)
+        #### 기술 스택
+                     
+        - **AI Models**
+            - **Generation (LLM)**: Azure OpenAI `gpt-4.1-mini`
+            - **Embeddings**: Azure OpenAI `text-embedding-3-large`  
         - **Frontend**: Streamlit
         - **Backend**: Python
         - **Deployment**: Azure Web App
         
-        ### 문의 및 피드백
+        #### 문의 및 피드백
         
-        개선 사항이나 버그 리포트는 아래로 연락주세요:
         - 📧 Email: minseo.jo@kt.com
         ---
         
         **Version**: 1.0.0 (MVP)  
-        **Last Updated**: 2025.09.14
+        **Last Updated**: 2025.09.15
         **Developed by**: KTds AI플랫폼개발팀 조민서 전임
         """)
 
