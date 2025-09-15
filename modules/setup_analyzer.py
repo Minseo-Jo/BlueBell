@@ -8,16 +8,17 @@ class SetupAnalyzer:
     """
     README 파일을 분석하여 환경 설정 가이드를 생성하는 클래스
     """
-    # 객체 생성자 
-    def __init__(self, azure_client):
+
+    def __init__(self, azure_client, rag_service=None):
         """
         초기화
         
         Args:
             azure_client: AzureOpenAIClient 인스턴스
+            rag_service: RAGService 인스턴스 (선택사항)
         """
-        # 객체 생성시 azure_client 주입 -> SetupAnalyzer 안의 다른 메서드들이 언제든 self.azure_client 사용가능
         self.azure_client = azure_client
+        self.rag_service = rag_service
         
     def generate_guide(self, readme_content: str, os_type: str = "all") -> str:
         """
@@ -29,19 +30,66 @@ class SetupAnalyzer:
         Returns:
             생성된 개발 환경 세팅 가이드
         """
-        try :
-            #Azure OpenAI를 사용하여 가이드 생성
-            guide = self.azure_client.analyze_readme(readme_content, os_type)
-
+        try:
+            # RAG 서비스가 있으면 RAG 사용, 없으면 기본 방식
+            if self.rag_service:
+                logger.info("RAG 서비스를 사용하여 가이드 생성")
+                result = self.rag_service.enhance_setup_guide(readme_content, os_type)
+                
+                if result["success"]:
+                    # RAG 결과 포맷팅
+                    guide = self._format_rag_guide(result, os_type)
+                    return guide
+                else:
+                    logger.warning("RAG 실패, 기본 방식으로 폴백")
+                    # 폴백: 기본 방식
+                    guide = self.azure_client.analyze_readme(readme_content, os_type)
+            else:
+                logger.info("기본 방식으로 가이드 생성")
+                # 기본 Azure OpenAI 방식
+                guide = self.azure_client.analyze_readme(readme_content, os_type)
+            
             # 포맷팅 개선
             guide = self._format_guide(guide, os_type)
-
             return guide
         
         except Exception as e:
-            logger.error(f"가이드 생성 오류 :{str(e)}")
+            logger.error(f"가이드 생성 오류: {str(e)}")
             return self._generate_fallback_guide(readme_content, os_type)
+
+    def _format_rag_guide(self, rag_result: Dict, os_type: str) -> str:
+        """RAG 결과를 포맷팅"""
+        os_icons = {
+            "all": "🌎",
+            "windows": "🪟",
+            "linux": "🐧",
+            "macos": "🍎"
+        }
+        icon = os_icons.get(os_type, "🖥️")
         
+        # 기본 가이드
+        formatted_guide = f"# {icon} 개발 환경 설정 가이드 \n\n"
+        formatted_guide += rag_result["guide"]
+        
+        # 참조된 템플릿 정보 추가
+        if rag_result["referenced_templates"]:
+            formatted_guide += "\n\n## 📚 참조된 설정 템플릿\n\n"
+            for i, template in enumerate(rag_result["referenced_templates"], 1):
+                formatted_guide += f"**{i}. {template['title']}**\n"
+                formatted_guide += f"- 기술 스택: {', '.join(template.get('tech_stack', []))}\n"
+                formatted_guide += f"- 난이도: {template.get('difficulty', 'N/A')}\n\n"
+        
+        # 발견된 기술 스택 정보 추가
+        if rag_result["tech_stack_found"]:
+            formatted_guide += f"\n\n## 🔍 감지된 기술 스택\n\n"
+            tech_list = ", ".join(rag_result["tech_stack_found"])
+            formatted_guide += f"**감지된 기술**: {tech_list}\n\n"
+        
+        # 코드 블록 포맷팅
+        formatted_guide = re.sub(r'```(\w+)', r'```\1', formatted_guide)
+        
+        return formatted_guide
+    
     def _format_guide(self, guide: str, os_type : str) -> str :
         """
         생성된 가이드 포맷 개선 
