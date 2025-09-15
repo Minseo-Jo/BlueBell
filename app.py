@@ -16,6 +16,9 @@ from modules.azure_client import AzureOpenAIClient
 from modules.setup_analyzer import SetupAnalyzer
 from modules.code_reviewer import CodeReviewer
 
+from modules.azure_search_client import AzureSearchClient  
+from modules.rag_service import RAGService
+
 # 페이지 설정
 st.set_page_config(
     page_title="DevPilot",
@@ -75,17 +78,52 @@ def initialize_session_state():
             st.session_state.client_status = f"error: {str(e)}"
             st.session_state.azure_client = None  # 실패 시 None 설정
 
-    # 조건 수정: azure_client가 성공적으로 생성된 경우만
+    # Azure Search 클라이언트 초기화
+    if 'search_client' not in st.session_state:
+        try:
+            if st.session_state.azure_client is not None:
+                st.session_state.search_client = AzureSearchClient()
+                st.session_state.search_status = "connected"
+            else:
+                st.session_state.search_status = "azure_client_failed"
+        except Exception as e:
+            st.session_state.search_status = f"error: {str(e)}"
+            st.session_state.search_client = None
+
+    # RAG 서비스 초기화
+    if 'rag_service' not in st.session_state:
+        try:
+            if (st.session_state.azure_client is not None and 
+                st.session_state.search_client is not None):
+                st.session_state.rag_service = RAGService(
+                    st.session_state.azure_client,
+                    st.session_state.search_client
+                )
+                st.session_state.rag_status = "connected"
+            else:
+                st.session_state.rag_status = "dependencies_failed"
+                st.session_state.rag_service = None
+        except Exception as e:
+            st.session_state.rag_status = f"error: {str(e)}"
+            st.session_state.rag_service = None
+
+    # 기존 분석기들 초기화 (RAG 서비스 포함)
     if ('setup_analyzer' not in st.session_state and 
         'azure_client' in st.session_state and 
         st.session_state.azure_client is not None):
-        st.session_state.setup_analyzer = SetupAnalyzer(st.session_state.azure_client)
+        st.session_state.setup_analyzer = SetupAnalyzer(
+            st.session_state.azure_client,
+            st.session_state.rag_service  # RAG 서비스 추가
+        )
 
     if ('code_reviewer' not in st.session_state and 
         'azure_client' in st.session_state and 
         st.session_state.azure_client is not None):
-        st.session_state.code_reviewer = CodeReviewer(st.session_state.azure_client)
-
+        st.session_state.code_reviewer = CodeReviewer(
+            st.session_state.azure_client,
+            st.session_state.rag_service  # RAG 서비스 추가
+        )
+        
 def main():
     # 세션 상태 초기화 (함수 안에서 호출)
     initialize_session_state()
