@@ -33,8 +33,8 @@ README 또는 코드 파일을 입력하면,
    - OS별 기본 설치 명령어 자동 생성
    - 프로젝트 실행 방법 초안 생성
 <div style="display: flex; justify-content: center;">
-  <img src="./image/ui-setup.png" width="500"/>
-  <img src="./image/ui-setupresult.png" width="500"/>
+  <img src="./image/ui-setup.png" width="450"/>
+  <img src="./image/ui-setupresult.png" width="450"/>
 </div>
 
 #### 2) 사내·고객사 코드 스타일 교정
@@ -43,8 +43,8 @@ README 또는 코드 파일을 입력하면,
    - 품질 향상 제안 : 잠재적 버그, 성능 최적화, 보안 취약점 지적
    - 실시간 피드백 : 즉시 개선 코드와 설명 제공
 <div style="display: flex; justify-content: center;">
-  <img src="./image/ui-code.png" width="500"/>
-  <img src="./image/ui-coderesult.png" width="500"/>
+  <img src="./image/ui-code.png" width="450"/>
+  <img src="./image/ui-coderesult.png" width="450"/>
 </div>
 
 ---
