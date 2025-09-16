@@ -32,17 +32,20 @@ README 또는 코드 파일을 입력하면,
    - README 및 텍스트 파일 업로드
    - OS별 기본 설치 명령어 자동 생성
    - 프로젝트 실행 방법 초안 생성
-<img src="./image/ui-setup.png" width="400"/>
-<img src="./image/ui-setupresult.png" width="400"/>
-
+<div style="display: flex; justify-content: center;">
+  <img src="./image/ui-setup.png" width="500"/>
+  <img src="./image/ui-setupresult.png" width="500"/>
+</div>
 
 #### 2) 사내·고객사 코드 스타일 교정
    - 네이밍 컨벤션 검사 : 함수명, 변수명, 클래스명 규칙 검증
    - 코드 구조 분석 : 가독성, 모듈화, 설계 패턴 제안
    - 품질 향상 제안 : 잠재적 버그, 성능 최적화, 보안 취약점 지적
    - 실시간 피드백 : 즉시 개선 코드와 설명 제공
-<img src="./image/ui-code.png" width="400"/>
-<img src="./image/ui-coderesult.png" width="400"/>
+<div style="display: flex; justify-content: center;">
+  <img src="./image/ui-code.png" width="500"/>
+  <img src="./image/ui-coderesult.png" width="500"/>
+</div>
 
 ---
 ### ⚙️ 시스템 아키텍처
