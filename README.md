@@ -11,9 +11,9 @@ README 또는 코드 파일을 입력하면,
 ---
 
 #### 문제 정의
-- 신규 투입 시 생산성 저하 : 프로젝트별 개발 환경 세팅 방식이 제각각
-- 코드 품질 관리 비용 : 고객사·사내별 코딩 컨벤션 차이로 코드 리뷰·품질 관리 비용 증가
-- 학습 문제 : 신입 개발자는 “무엇을, 어떻게 맞춰야 하는지” 감을 잡기 어려움
+- **신규 투입 시 생산성 저하** : 프로젝트별 개발 환경 세팅 방식이 제각각
+- **코드 품질 관리 비용** : 고객사·사내별 코딩 컨벤션 차이로 코드 리뷰·품질 관리 비용 증가
+- **학습 문제** : 신입 개발자는 “무엇을, 어떻게 맞춰야 하는지” 감을 잡기 어려움
 
 ---
 
@@ -53,13 +53,20 @@ README 또는 코드 파일을 입력하면,
 
 <img src="./image/architecture.png" alt="Bluebell Architecture" width="500"/>
 
+
+- Azure 서비스
+   - **Azure OpenAI** : `gpt-4.1-mini` 로 코드 분석과 가이드 생성, `text-embedding-ada-002` 로 벡터 임베딩 생성
+   - **RAG Service** : 사용자 입력 패턴 추출, 관련된 컨벤션과 템플릿 데이터 검색으로 정확하고 맞춤화된 답변 생성
+   - **Azure AI Search** : 검색 인덱스로 벡터화된 코딩 컨벤션과 환경설정 템플릿 데이터가 저장되어 있어, 빠르고 정확한 검색 가능
+
+
 ---
 
 ### ⚒️ 기술 스택
 ---
 - Azure OpenAI Service
    - LLM: GPT-4.1-mini (코드 분석 및 가이드 생성)
-   - Embedding: text-embedding-3-large (벡터 임베딩 생성)
+   - Embedding: text-embedding-ada-002 (벡터 임베딩 생성)
 - Azure AI Search: 벡터 검색 인덱스 (코딩 컨벤션, 환경 설정 템플릿)
 - Azure Web App: 서비스 배포 및 운영 환경
 - Backend: Python 3.11+ (Azure SDK, FastAPI)

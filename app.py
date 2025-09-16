@@ -600,7 +600,7 @@ def main():
                      
         - **AI Models**
             - **Generation (LLM)**: Azure OpenAI `gpt-4.1-mini`
-            - **Embeddings**: Azure OpenAI `text-embedding-3-large`  
+            - **Embeddings**: Azure OpenAI `text-embedding-ada-002`  
         - **Frontend**: Streamlit
         - **Backend**: Python
         - **Search**: Azure AI Search
