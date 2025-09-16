@@ -135,7 +135,7 @@ conventions_schema = {
     "content": "Searchable String",
     "language": "Filterable String",
     "category": "Filterable String",
-    "content_vector": "Vector(1536)"  # text-embedding-3-large
+    "content_vector": "Vector(1536)" 
 }
 
 # 환경 설정 템플릿 인덱스
