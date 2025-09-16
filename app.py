@@ -1,5 +1,5 @@
 """
-🧚‍♂️ BlueBell - 개발 환경 셋업 & 코드 스타일 자동화 도우미
+🧚‍♂️ BlueBell - 개발 환경 셋업 & 코드 리뷰 도우미
 """
 
 import streamlit as st
@@ -317,7 +317,7 @@ def main():
     
     # 헤더 - 새로운 브랜딩
     st.markdown('<h1 class="brand-title">🧚‍♂️ BlueBell</h1>', unsafe_allow_html=True)
-    st.markdown('<p class="sub-header">개발 환경 셋업 & 코드 스타일 자동화 도우미</p>', unsafe_allow_html=True)
+    st.markdown('<p class="sub-header">개발 환경 셋업 & 코드 리뷰 도우미</p>', unsafe_allow_html=True)
 
     # 연결 상태 표시 (오류가 있을 때만)
     show_connection_status()
@@ -439,7 +439,6 @@ def main():
                         st.success("✨ 환경 설정 가이드가 생성되었습니다!")
                         
                         # 결과 표시
-                        st.markdown("### 📋 생성된 가이드")
                         st.markdown(guide)
                         
                         # 다운로드 버튼
@@ -556,7 +555,6 @@ def main():
                         st.success("✨ 코드 리뷰가 완료되었습니다!")
                         
                         # 결과 표시
-                        st.markdown("### 📋 리뷰 결과")
                         st.markdown(review_result)
                         
                         # 다운로드 버튼
