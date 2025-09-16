@@ -26,7 +26,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# CSS 스타일 - 블루 톤으로 완전히 재설계
+# CSS
 st.markdown("""
 <style>
     /* 전역 스타일 */
@@ -34,19 +34,26 @@ st.markdown("""
         background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
     }
     
-    /* 메인 헤더 - 블루 그라데이션 */
-    .main-header {
+    /* 메인 헤더 */
+    .brand-title {
         font-size: 3.5rem;
         font-weight: bold;
-        background: linear-gradient(90deg, #4285f4 0%, #1e88e5 50%, #0d47a1 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-align: center;
+        color: #1e88e5;
+        text-align: center !important;
         padding: 1.5rem 0;
-        text-shadow: 0 2px 4px rgba(66, 133, 244, 0.3);
+        margin: 0 auto;
+        text-shadow: 2px 2px 4px rgba(30, 136, 229, 0.3);
+        width: 100%;
+        display: block;
     }
     
+    .brand-container {
+        text-align: center !important;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     /* 서브 헤더 */
     .sub-header {
         text-align: center;
@@ -101,7 +108,7 @@ st.markdown("""
         border-left: 4px solid #2196f3;
     }
     
-    /* 에러 메시지 - 부드러운 레드 */
+    /* 에러 메시지 */
     .error-message {
         background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
         border: 1px solid #ef9a9a;
@@ -111,7 +118,7 @@ st.markdown("""
         border-left: 4px solid #f44336;
     }
     
-    /* 연결 상태 표시 - 작고 우아하게 */
+    /* 연결 상태 표시 */
     .connection-status {
         position: fixed;
         top: 10px;
@@ -136,12 +143,12 @@ st.markdown("""
         border-color: rgba(211, 47, 47, 0.3);
     }
     
-    /* 사이드바 개선 */
+    /* 사이드바 */
     .sidebar .sidebar-content {
         background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
     }
     
-    /* 버튼 스타일 개선 */
+    /* 버튼 스타일 */
     .stButton > button {
         background: linear-gradient(135deg, #4285f4 0%, #1e88e5 100%);
         color: white;
@@ -200,7 +207,7 @@ st.markdown("""
         border-top: 1px solid rgba(66, 133, 244, 0.2);
     }
     
-    /* 메트릭 카드 개선 */
+    /* 메트릭 카드 */
     .metric-card {
         background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
         border-radius: 10px;
@@ -309,13 +316,13 @@ def main():
     initialize_session_state()
     
     # 헤더 - 새로운 브랜딩
-    st.markdown('<h1 class="main-header">🧚‍♂️ BlueBell</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="brand-title">🧚‍♂️ BlueBell</h1>', unsafe_allow_html=True)
     st.markdown('<p class="sub-header">개발 환경 셋업 & 코드 스타일 자동화 도우미</p>', unsafe_allow_html=True)
 
     # 연결 상태 표시 (오류가 있을 때만)
     show_connection_status()
 
-    # 사이드바 - 개선된 디자인
+    # 사이드바
     with st.sidebar:
         st.markdown("#### 기능 선택")
         feature = st.radio(
@@ -611,7 +618,7 @@ def main():
         **Developed by**: KTds AI플랫폼개발팀 조민서
         """)
 
-    # 푸터 - 새로운 브랜딩
+    # 푸터 
     st.markdown("---")
     st.markdown(
         """
