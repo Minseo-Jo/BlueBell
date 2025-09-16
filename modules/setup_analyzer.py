@@ -68,12 +68,13 @@ class SetupAnalyzer:
         icon = os_icons.get(os_type, "🖥️")
         
         # 기본 가이드
-        formatted_guide = f"# {icon} 개발 환경 설정 가이드 \n\n"
-        formatted_guide += rag_result["guide"]
+        # formatted_guide = f"#### {icon} 개발 환경 설정 가이드 \n\n"
+        # formatted_guide += rag_result["guide"]
+        formatted_guide = rag_result["guide"]
         
         # 참조된 템플릿 정보 추가
         if rag_result["referenced_templates"]:
-            formatted_guide += "\n\n## 📚 참조된 설정 템플릿\n\n"
+            formatted_guide += "\n\n##### 📚 참조된 설정 템플릿\n\n"
             for i, template in enumerate(rag_result["referenced_templates"], 1):
                 formatted_guide += f"**{i}. {template['title']}**\n"
                 formatted_guide += f"- 기술 스택: {', '.join(template.get('tech_stack', []))}\n"
@@ -81,7 +82,7 @@ class SetupAnalyzer:
         
         # 발견된 기술 스택 정보 추가
         if rag_result["tech_stack_found"]:
-            formatted_guide += f"\n\n## 🔍 감지된 기술 스택\n\n"
+            formatted_guide += f"\n\n##### 🔍 감지된 기술 스택\n\n"
             tech_list = ", ".join(rag_result["tech_stack_found"])
             formatted_guide += f"**감지된 기술**: {tech_list}\n\n"
         
@@ -111,7 +112,7 @@ class SetupAnalyzer:
         icon = os_icons.get(os_type, "🖥️")
 
         # 헤더 추가
-        formatted_guide = f"# {icon} 개발 환경 설정 가이드\n\n"
+        formatted_guide = f"#### {icon} 개발 환경 설정 가이드\n\n"
         formatted_guide += guide
 
         # 코드 블록 포맷팅

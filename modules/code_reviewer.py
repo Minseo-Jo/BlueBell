@@ -112,7 +112,7 @@ class CodeReviewer:
     
     def _format_rag_review_result(self, rag_result: Dict, language: str) -> str:
         """RAG 결과를 포맷팅"""
-        formatted = f"""# 📝 코드 리뷰 결과
+        formatted = f"""#### 📝 코드 리뷰 결과
 
     **언어**: {language}
     **리뷰 일시**: {self._get_current_time()}
@@ -123,7 +123,7 @@ class CodeReviewer:
 
     ---
 
-    ## 📚 참조된 코딩 컨벤션
+    ##### 📚 참조된 코딩 컨벤션
 
     """
         
@@ -144,7 +144,7 @@ class CodeReviewer:
 
     """
         
-        formatted += """## 📊 요약
+        formatted += """###### 📊 요약
 
     이 리뷰는 AI 기반 자동 분석 + RAG 검색 결과입니다.
     관련 코딩 컨벤션을 참조하여 더 정확한 피드백을 제공했습니다.
@@ -229,7 +229,7 @@ class CodeReviewer:
         Returns:
             포맷팅된 결과
         """
-        formatted = f"""# 📝 코드 리뷰 결과
+        formatted = f"""#### 📝 코드 리뷰 결과
 
 **언어**: {language}
 **리뷰 일시**: {self._get_current_time()}
@@ -270,7 +270,7 @@ class CodeReviewer:
         """
         lines = code.split('\n')
         
-        review = f"""# 📝 기본 코드 리뷰 결과
+        review = f"""#### 📝 기본 코드 리뷰 결과
 
 **언어**: {language}
 **코드 라인 수**: {len(lines)}
