@@ -37,7 +37,7 @@ README 또는 코드 파일을 입력하면,
 ---
 
 ### 아키텍처
-<img src="./architecture.png" alt="Bluebell Architecture" width="500"/>
+<img src="./image/architecture.png" alt="Bluebell Architecture" width="500"/>
 
 ---
 
