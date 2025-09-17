@@ -8,7 +8,7 @@ README 또는 코드 파일을 입력하면,
 
 ---
 ### 🎯 프로젝트 개요
----
+
 
 #### 문제 정의
 - **신규 투입 시 생산성 저하** : 프로젝트별 개발 환경 세팅 방식이 제각각
@@ -26,7 +26,6 @@ README 또는 코드 파일을 입력하면,
 
 ### ✨ 핵심 기능
 
----
 
 #### 1) AI 기반 개발 환경 셋업 가이드
    - README 및 텍스트 파일 업로드
@@ -49,7 +48,7 @@ README 또는 코드 파일을 입력하면,
 
 ---
 ### ⚙️ 시스템 아키텍처
----
+
 
 <img src="./image/architecture.png" alt="Bluebell Architecture" width="500"/>
 
@@ -63,7 +62,7 @@ README 또는 코드 파일을 입력하면,
 ---
 
 ### ⚒️ 기술 스택
----
+
 - Azure OpenAI Service
    - LLM: GPT-4.1-mini (코드 분석 및 가이드 생성)
    - Embedding: text-embedding-ada-002 (벡터 임베딩 생성)
@@ -78,7 +77,7 @@ README 또는 코드 파일을 입력하면,
 
 ### 🔬 기술 구현 세부사항
 
----
+
 #### 1. 패턴 추출 및 분석
 ```python
 # 코드에서 리뷰 관련 패턴 식별
@@ -158,7 +157,6 @@ templates_schema = {
 
 ### 🌐 배포
 
----
 #### Azure Web App 배포
 
 **배포 URL**: [🧚‍♂️ BlueBell](https://minseo-web-devpilot-915-a7dvd2h0ckfjcmbh.eastus2-01.azurewebsites.net/) 
